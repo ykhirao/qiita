@@ -2,7 +2,7 @@
 
 
 
-reveal.jsは[こちら](https://ykhirao.github.io/SlideByMarkdown/reveal_js/index.html)
+reveal.jsは[こちら](./reveal_js/index.html)
 
 
 remark.jsは[こちら](https://ykhirao.github.io/SlideByMarkdown/remark_js/remark_js.pdf)(pdf)
