@@ -2,6 +2,7 @@
 
 * Markdown記法によるスライド作成するアプリ等
 * 5サンプル
+* [Qiita記事](http://qiita.com/ykhirao/items/74a23f812dd5d22b3b88)
 
 ## Service
 
