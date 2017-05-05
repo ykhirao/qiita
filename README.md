@@ -10,6 +10,15 @@
 reveal.js	
 ![reveal.js](./images/reveal_js.jpg)
 
+## hidden_command
+ある隠しコマンドを打つとalertが出る。
 
 
 
+
+
+
+
+
+
+.
