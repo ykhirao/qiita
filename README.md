@@ -14,7 +14,7 @@ reveal.js
 ある隠しコマンドを打つとalertが出る。
 
 ## gas
-Google Apps Script
+Google Apps Scriptのサンプル
 
 ### Slack log
 ログを取得するサンプル
