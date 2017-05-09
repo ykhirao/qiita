@@ -1,2 +1,2 @@
-# Uging GAS for scraping
+# Uging GAS for logging by time
 
