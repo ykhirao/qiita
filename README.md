@@ -6,16 +6,21 @@
 * Markdown記法によるスライド作成するアプリ等
 * 5サンプル
 
-### Screenshot	
-reveal.js	
+### Screenshot
+reveal.js
 ![reveal.js](./images/reveal_js.jpg)
 
 ## hidden_command
 ある隠しコマンドを打つとalertが出る。
 
+## gas
+Google Apps Script
 
+### Slack log
+ログを取得するサンプル
 
-
+### set holiday
+Google Calendarの休日設定を拡張する
 
 
 

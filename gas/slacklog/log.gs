@@ -16,8 +16,7 @@ var HISTORY_COUNT_PER_PAGE = 1000;
 function StoreLogsDelta() {
     var logger = new SlackChannelHistoryLogger();
     logger.run();
-}
-;
+};
 var SlackChannelHistoryLogger = (function () {
     function SlackChannelHistoryLogger() {
         this.memberNames = {};
