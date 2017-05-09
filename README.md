@@ -20,7 +20,7 @@ Google Apps Script
 ログを取得するサンプル
 
 ### set holiday
-Google Calendarの休日設定を拡張する
+Google Calendarの休日設定を拡張する。
 
 
 
