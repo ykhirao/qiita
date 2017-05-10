@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
 <body>
-  <p>Hello, World! The time is <?= new Date() ?>.</p>
+  <p>Hello, World!</p>
+  <p>The time is <?= now() ?></p>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    $('p').css("color", "black"); //test
+  </script>
 </body>
 </html>
