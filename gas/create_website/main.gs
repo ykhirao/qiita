@@ -6,6 +6,11 @@ function doGet() {
   return html.evaluate();
 }
 
+function include(filename) {
+  return HtmlService.createHtmlOutputFromFile(filename)
+      .getContent();
+}
+
 function now(){
 
   function setFormat(symbol, arr){

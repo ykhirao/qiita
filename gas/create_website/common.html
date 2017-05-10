@@ -1,0 +1,217 @@
+<style>
+/* 共通レイアウト ================================ */
+body {
+  padding-top: 70px;
+  color: #364a4d;
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #1f89e2;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #1b7ccd;
+}
+
+.container {
+  width: 900px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  clear: both;
+}
+
+.heading {
+  display: inline-block;
+}
+
+/* フォント
+================================ */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 2em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  /*margin-bottom: 30px;*/
+  /*font-weight: normal;*/
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* ヘッダー ================================ */
+.navbar {
+  height: 65px;
+  width: 100%;
+  background-color: #3356af;
+  top: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  margin-bottom: 20px;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  padding-top: 12px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-right {
+  float: right;
+  margin: 0 auto;
+}
+
+.header-right a {
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+
+.header-right li {
+  line-height: 65px;
+  padding: 0 18px;
+  float: left;
+  color: white;
+}
+
+.vertical-line {
+  height: 22px;
+  margin-top: 22px;
+  margin-right: -36px;
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.link-bg {
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.5s;
+}
+
+.link-bg:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* フッター ================================ */
+footer {
+  margin-top: 100px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #848484;
+}
+
+footer small {
+  float: left;
+}
+
+/* ボタン ================================ */
+.btn {
+  padding: 8px 24px;
+  color: white;
+  display: inline-block;
+  opacity: 0.8;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 「保存」ボタン */
+.primary-btn {
+  background-color: #239b76;
+}
+
+.primary-btn:hover {
+  background-color: #28b086;
+}
+
+/*　「編集」ボタン　*/
+.edit-btn {
+  background-color: #239b76;
+}
+
+.edit-btn:hover {
+  background-color: #28b086;
+  color: white;
+  text-decoration: none;
+}
+
+/*　「戻る」ボタン　*/
+.destroy-btn {
+  background-color: #1f89e2;
+}
+
+.destroy-btn:hover {
+  background-color: #3695e5;
+  color: white;
+  text-decoration: none;
+}
+
+/* フォーム================================ */
+input, textarea, select {
+  border: 1px solid #bbb;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  border-radius: 3px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.428571429;
+  color: #555555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+}
+
+/*　エラーメッセージ　*/
+.alert {
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-size: small;
+}
+
+.alert-success {
+  line-height: 40px;
+  padding-left: 15px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+
+.alert-danger {
+  padding: 10px 20px;
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+.alert-danger ul li {
+  list-style-type: disc;
+ }
+
+</style>
