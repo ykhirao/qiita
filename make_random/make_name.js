@@ -74,6 +74,7 @@ var woman = [
   {"k": "和奏", "y": "ワカナ"}, {"k": "莉菜", "y": "リナ"}, {"k": "莉桜", "y": "リオ"}, {"k": "菫", "y": "スミレ"}, {"k": "菫花", "y": "スミレ"},
 ];
 
+
 var family_hash = family[Math.floor(Math.random() * family.length)];
 console.log(family_hash["k"]);
 console.log(family_hash["y"]);
