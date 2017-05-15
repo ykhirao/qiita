@@ -41,6 +41,39 @@ var family = [
   {"k": "大森", "y": "オオモリ"}, {"k": "奥村", "y": "オクムラ"}, {"k": "岡", "y": "オカ"}, {"k": "内山", "y": "ウチヤマ"}, {"k": "片岡", "y": "カタオカ"}
 ];
 
+var man = [
+  {"kanji": "蓮", "yomi": "レン"}, {"kanji": "雄大", "yomi": "ユウダイ"}, {"kanji": "湊", "yomi": "ミナト"}, {"kanji": "誠", "yomi": "マコト"}, {"kanji": "翔", "yomi": "ショウ"},
+  {"kanji": "翔太", "yomi": "ショウタ"}, {"kanji": "新", "yomi": "アラタ"}, {"kanji": "樹", "yomi": "イツキ"}, {"kanji": "悠真", "yomi": "ユウマ"}, {"kanji": "設計", "yomi": "セッケイ"},
+  {"kanji": "颯太", "yomi": "ソウタ"}, {"kanji": "陸", "yomi": "リク"}, {"kanji": "葵", "yomi": "アオイ"}, {"kanji": "大和", "yomi": "ヤマト"}, {"kanji": "直樹", "yomi": "ナオキ"},
+  {"kanji": "瑛太", "yomi": "エイタ"}, {"kanji": "建設", "yomi": "ケンセツ"}, {"kanji": "大輔", "yomi": "ダイスケ"}, {"kanji": "翼", "yomi": "ツバサ"}, {"kanji": "匠", "yomi": "タクミ"},
+  {"kanji": "諒", "yomi": "リョウ"}, {"kanji": "健太", "yomi": "ケンタ"}, {"kanji": "圭", "yomi": "ケイ"}, {"kanji": "達也", "yomi": "タツヤ"}, {"kanji": "大地", "yomi": "ダイチ"},
+  {"kanji": "太一", "yomi": "タイチ"}, {"kanji": "颯真", "yomi": "ソウマ"}, {"kanji": "旭", "yomi": "アサヒ"}, {"kanji": "伊織", "yomi": "イオリ"}, {"kanji": "慶", "yomi": "ケイ"},
+  {"kanji": "司", "yomi": "ツカサ"}, {"kanji": "拓也", "yomi": "タクヤ"}, {"kanji": "朝陽", "yomi": "アサヒ"}, {"kanji": "一郎", "yomi": "イチロウ"}, {"kanji": "悠", "yomi": "ユウ"},
+  {"kanji": "隼人", "yomi": "ハヤト"}, {"kanji": "悠人", "yomi": "ユウト"}, {"kanji": "亮", "yomi": "リョウ"}, {"kanji": "駿", "yomi": "シュン"}, {"kanji": "晃輔", "yomi": "コウスケ"},
+  {"kanji": "悠斗", "yomi": "ユウト"}, {"kanji": "歩", "yomi": "アユム"}, {"kanji": "和也", "yomi": "カズヤ"}, {"kanji": "奏太", "yomi": "ソウタ"}, {"kanji": "大翔", "yomi": "ヒロト"},
+  {"kanji": "陽向", "yomi": "ヒナタ"}, {"kanji": "翔平", "yomi": "ショウヘイ"}, {"kanji": "新太", "yomi": "アラタ"}, {"kanji": "海斗", "yomi": "カイト"}, {"kanji": "亮太", "yomi": "リョウタ"},
+  {"kanji": "悠太", "yomi": "ユウタ"}, {"kanji": "仁", "yomi": "ジン"}, {"kanji": "航平", "yomi": "コウヘイ"}, {"kanji": "陽斗", "yomi": "ハルト"}, {"kanji": "碧", "yomi": "アオイ"},
+  {"kanji": "啓太", "yomi": "ケイタ"}, {"kanji": "潤", "yomi": "ジュン"}, {"kanji": "蒼", "yomi": "アオイ"}, {"kanji": "陽介", "yomi": "ヨウスケ"}, {"kanji": "哲也", "yomi": "テツヤ"},
+  {"kanji": "陽翔", "yomi": "ハルト"}, {"kanji": "光", "yomi": "ヒカル"}, {"kanji": "楓", "yomi": "カエデ"}, {"kanji": "遼", "yomi": "リョウ"}, {"kanji": "悠翔", "yomi": "ユウト"},
+  {"kanji": "航", "yomi": "ワタル"}, {"kanji": "徹", "yomi": "トオル"}, {"kanji": "拓海", "yomi": "タクミ"}, {"kanji": "晴", "yomi": "ハル"}, {"kanji": "湊斗", "yomi": "ミナト"},
+  {"kanji": "蒼太", "yomi": "ソウタ"}, {"kanji": "優", "yomi": "ユウ"}, {"kanji": "翔", "yomi": "カケル"}, {"kanji": "豊", "yomi": "ユタカ"}, {"kanji": "拓実", "yomi": "タクミ"},
+  {"kanji": "岳", "yomi": "ガク"}, {"kanji": "健太郎", "yomi": "ケンタロウ"}, {"kanji": "裕太", "yomi": "ユウタ"}, {"kanji": "大智", "yomi": "ダイチ"}, {"kanji": "大介", "yomi": "ダイスケ"},
+  {"kanji": "奏太", "yomi": "カナタ"}, {"kanji": "奏多", "yomi": "カナタ"}, {"kanji": "颯人", "yomi": "ハヤト"}, {"kanji": "悟", "yomi": "サトル"}, {"kanji": "大輝", "yomi": "ダイキ"},
+  {"kanji": "健人", "yomi": "ケント"}, {"kanji": "碧人", "yomi": "アオト"}, {"kanji": "涼", "yomi": "リョウ"}, {"kanji": "健", "yomi": "タケル"}, {"kanji": "怜", "yomi": "レイ"},
+  {"kanji": "優太", "yomi": "ユウタ"}, {"kanji": "蒼真", "yomi": "ソウマ"}, {"kanji": "陸斗", "yomi": "リクト"}, {"kanji": "稜", "yomi": "リョウ"}, {"kanji": "大樹", "yomi": "ダイキ"},
+  {"kanji": "晃", "yomi": "アキラ"}, {"kanji": "朔", "yomi": "サク"}, {"kanji": "直人", "yomi": "ナオト"}, {"kanji": "太郎", "yomi": "タロウ"}, {"kanji": "拓真", "yomi": "タクマ"},
+  {"kanji": "和樹", "yomi": "カズキ"}, {"kanji": "陽", "yomi": "ハル"}, {"kanji": "渉", "yomi": "ワタル"}, {"kanji": "瑛斗", "yomi": "エイト"}, {"kanji": "陽太", "yomi": "ヨウタ"},
+  {"kanji": "慧", "yomi": "ケイ"}, {"kanji": "純", "yomi": "ジュン"}, {"kanji": "壮真", "yomi": "ソウマ"}, {"kanji": "康平", "yomi": "コウヘイ"}, {"kanji": "俊介", "yomi": "シュンスケ"},
+  {"kanji": "聡", "yomi": "サトシ"}, {"kanji": "響", "yomi": "ヒビキ"}, {"kanji": "和真", "yomi": "カズマ"}, {"kanji": "健一", "yomi": "ケンイチ"}, {"kanji": "健", "yomi": "ケン"},
+  {"kanji": "洋平", "yomi": "ヨウヘイ"}, {"kanji": "遥斗", "yomi": "ハルト"}, {"kanji": "淳", "yomi": "ジュン"}, {"kanji": "隆", "yomi": "タカシ"}, {"kanji": "一", "yomi": "ハジメ"},
+  {"kanji": "薫", "yomi": "カオル"}, {"kanji": "善", "yomi": "ゼン"}, {"kanji": "要", "yomi": "カナメ"}, {"kanji": "旬", "yomi": "シュン"}, {"kanji": "琉生", "yomi": "ルイ"},
+  {"kanji": "柊", "yomi": "シュウ"}, {"kanji": "泰知", "yomi": "タイチ"}, {"kanji": "優斗", "yomi": "ユウト"}, {"kanji": "卓也", "yomi": "タクヤ"}, {"kanji": "祐介", "yomi": "ユウスケ"},
+  {"kanji": "慶太", "yomi": "ケイタ"}, {"kanji": "奏汰", "yomi": "カナタ"}, {"kanji": "悠希", "yomi": "ユウキ"}, {"kanji": "圭佑", "yomi": "ケイスケ"}, {"kanji": "俊", "yomi": "シュン"},
+  {"kanji": "海翔", "yomi": "カイト"}, {"kanji": "櫂", "yomi": "カイ"}, {"kanji": "康介", "yomi": "コウスケ"}, {"kanji": "太陽", "yomi": "タイヨウ"}, {"kanji": "裕介", "yomi": "ユウスケ"},
+  {"kanji": "空", "yomi": "ソラ"}, {"kanji": "廉", "yomi": "レン"}, {"kanji": "圭吾", "yomi": "ケイゴ"}, {"kanji": "智也", "yomi": "トモヤ"}, {"kanji": "篤", "yomi": "アツシ"},
+  {"kanji": "悠人", "yomi": "ハルト"}, {"kanji": "結翔", "yomi": "ユイト"}, {"kanji": "一樹", "yomi": "カズキ"}, {"kanji": "颯汰", "yomi": "ソウタ"}, {"kanji": "颯", "yomi": "ハヤテ"}
+];
+
 var woman = [
   {"k": "陽菜", "y": "ヒナ"}, {"k": "凛", "y": "リン"}, {"k": "結菜", "y": "ユイナ"}, {"k": "葵", "y": "アオイ"}, {"k": "結愛", "y": "ユア"},
   {"k": "愛莉", "y": "アイリ"}, {"k": "美咲", "y": "ミサキ"}, {"k": "結衣", "y": "ユイ"}, {"k": "桜", "y": "サクラ"}, {"k": "凜", "y": "リン"},
@@ -71,13 +104,17 @@ var woman = [
   {"k": "唯華", "y": "ユイカ"}, {"k": "優", "y": "ユウ"}, {"k": "優妃", "y": "ユウキ"}, {"k": "悠愛", "y": "ユア"}, {"k": "柚", "y": "ユズ"},
   {"k": "柚花", "y": "ユズカ"}, {"k": "柚子", "y": "ユズ"}, {"k": "遥香", "y": "ハルカ"}, {"k": "陽向", "y": "ヒナタ"}, {"k": "陽香", "y": "ハルカ"},
   {"k": "陽茉梨", "y": "ヒマリ"}, {"k": "翼", "y": "ツバサ"}, {"k": "梨央", "y": "リオ"}, {"k": "梨乃", "y": "リノ"}, {"k": "和心", "y": "アコ"},
-  {"k": "和奏", "y": "ワカナ"}, {"k": "莉菜", "y": "リナ"}, {"k": "莉桜", "y": "リオ"}, {"k": "菫", "y": "スミレ"}, {"k": "菫花", "y": "スミレ"},
+  {"k": "和奏", "y": "ワカナ"}, {"k": "莉菜", "y": "リナ"}, {"k": "莉桜", "y": "リオ"}, {"k": "菫", "y": "スミレ"}, {"k": "菫花", "y": "スミレ"}
 ];
 
 
 var family_hash = family[Math.floor(Math.random() * family.length)];
 console.log(family_hash["k"]);
 console.log(family_hash["y"]);
+
+var man_hash = man[Math.floor(Math.random() * man.length)];
+console.log(man_hash["k"]);
+console.log(man_hash["y"]);
 
 var woman_hash = woman[Math.floor(Math.random() * woman.length)];
 console.log(woman_hash["k"]);
