@@ -1,5 +1,13 @@
 # Qiita
 
+## 書きたいこと
+GASのWEB API化  
+Qiita .md 自動表生成  
+ライブコーディング採用  
+Slack APIレガシーの話  
+Slackに大量のemoji  
+
+
 ## [slide_markdown](https://ykhirao.github.io/qiita/slide_markdown/)
 
 ### 内容
