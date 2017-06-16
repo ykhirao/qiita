@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- min jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" href="https://avatars2.githubusercontent.com/u/25813519?v=3&u=d753df8c82ccc1c536b10d3dc771ad0faaaa8b62&s=400">
+  <style>
+    ul {
+      -webkit-padding-start: 0px;
+    }
+    li {
+      margin-left: 20px;
+      display: inline-block;
+      font-size: 14px;
+    }
+    ul > li > span {
+      margin-left: 15px;
+    }
+  </style>
+  <title>Set Table</title>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <!-- タイトルと本文の領域を分けない -->
+    <div class="input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" id="click_set_table"></span></span>
+      <input type="textarea" class="form-control" id="set_table" aria-label="Amount (to the nearest dollar)" placeholder="title" style="border-bottom: 0px;">
+      <textarea class="form-control" rows="5" id="comment" onkeydown="press_enter(event.keyCode)" style="border-radius: 0px; border-top: 0px;" placeholder="text" ></textarea>
+    </div>
+    <hr>
+    <!-- テーブル整形 -->
+    <div class="input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" id="click_set_table"></span></span>
+      <div class="form-control" style="border-bottom: 0px; height: 47px;">
+        <div class="btn-group select_csv_tsv" data-toggle="buttons">
+          <label class="btn btn-default active" id="csv_check">
+            <input type="radio" autocomplete="off" checked="checked"> CSV
+          </label>
+          <label class="btn btn-default" id="tsv_check">
+            <input type="radio" autocomplete="off"> TSV
+          </label>
+          <label class="btn btn-default" id="write_sample">
+            <span>Sample入力</span>
+          </label>
+          <label class="btn btn-default" id="delete_sample">
+            <span>Sample削除</span>
+          </label>
+        </div>
+      </div>
+      <textarea class="form-control" rows="5" id="input_check" onkeydown="press_enter(event.keyCode)" style="border-radius: 0px;" placeholder="input&#13;&#10;-----------&#13;&#10;sample1,sample2&#13;&#10;sample3,sample4" ></textarea>
+      <textarea class="form-control" rows="8" id="" onkeydown="press_enter(event.keyCode)" style="border-radius: 0px; border-top: 0px;" placeholder="output&#13;&#10;-----------&#13;&#10;|head1|head2|&#13;&#10;|:-:|:-:|&#13;&#10;|sample1|sample2|&#13;&#10;|sample3|sample4|"></textarea>
+    </div>
+  </div>
+  <script>
+    (function(){
+      $('#click_set_table').on('click', function(){
+        text_at_input();
+      });
+      $('.select_csv_tsv label input').each(function(){
+        "test";
+      });
+      $('#csv_check').on('click', function(){
+        $('#input_check')[0].placeholder = "input\n-----------\nsample1,sample2\nsample3,sample4";
+      });
+      $('#tsv_check').on('click', function(){
+        $('#input_check')[0].placeholder = "input\n-----------\nsample1	sample2\nsample3	sample4";
+      });
+      $('#write_sample').on('click', function(){
+        $('#tsv_check input')[0].click();
+        $('#input_check').val("sample1	sample2\nsample3	sample4");
+      });
+      $('#delete_sample').on('click', function(){
+        $('#input_check').val("");
+      });
+    })();
+
+    function press_enter(code){
+      if(code === 13){
+        text_at_input();
+      }
+    };
+
+    function text_at_input() {
+      var text = $('#input_check').val();
+
+      // 文字列が空白なら処理終了
+      if ( text.trim().length == 0) { return; }
+
+      // 仕切り文字の設定
+      var text_split = "\t";
+      if ($('#csv_check').hasClass('active')) { var text_split = ","; }
+
+      var lines = text.split("\n");
+      for(var i = 0; i < lines.length; i++) {
+        var arr = text.split(text_split);
+        console.log(lines[i]);
+      }
+
+    };
+
+
+  </script>
+</body>
+</html>
