@@ -18,6 +18,7 @@
       -webkit-padding-start: 0px;
     }
     li {
+      /*background-color: #222222;*/
       margin-left: 20px;
       display: inline-block;
       font-size: 14px;
@@ -26,7 +27,7 @@
       margin-left: 15px;
     }
   </style>
-  <title>Set Table</title>
+  <title>Document</title>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-static-top">
@@ -51,13 +52,13 @@
     <hr>
     <!-- テーブル整形 -->
     <div class="input-group">
-      <span class="input-group-addon"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" id="click_set_table"></span></span>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" id=""></span></span>
       <div class="form-control" style="border-bottom: 0px; height: 47px;">
         <div class="btn-group select_csv_tsv" data-toggle="buttons">
-          <label class="btn btn-default active" id="csv_check">
+          <label class="btn btn-default check_btn active" id="csv_check">
             <input type="radio" autocomplete="off" checked="checked"> CSV
           </label>
-          <label class="btn btn-default" id="tsv_check">
+          <label class="btn btn-default check_btn" id="tsv_check">
             <input type="radio" autocomplete="off"> TSV
           </label>
           <label class="btn btn-default" id="write_sample">
@@ -65,6 +66,9 @@
           </label>
           <label class="btn btn-default" id="delete_sample">
             <span>Sample削除</span>
+          </label>
+          <label class="btn btn-default" id="create_table">
+            <span>Create Table</span>
           </label>
         </div>
       </div>
@@ -74,51 +78,34 @@
   </div>
   <script>
     (function(){
-      $('#click_set_table').on('click', function(){
-        text_at_input();
-      });
-      $('.select_csv_tsv label input').each(function(){
-        "test";
-      });
+
       $('#csv_check').on('click', function(){
         $('#input_check')[0].placeholder = "input\n-----------\nsample1,sample2\nsample3,sample4";
       });
       $('#tsv_check').on('click', function(){
-        $('#input_check')[0].placeholder = "input\n-----------\nsample1	sample2\nsample3	sample4";
+        $('#input_check')[0].placeholder = "input\n-----------\nsample1 sample2\nsample3    sample4";
       });
       $('#write_sample').on('click', function(){
         $('#tsv_check input')[0].click();
-        $('#input_check').val("sample1	sample2\nsample3	sample4");
+        $('#input_check').val("sample1\tsample2\nsample3\tsample4");
       });
       $('#delete_sample').on('click', function(){
         $('#input_check').val("");
       });
+
+      $('#create_table').on('click', function(){
+        var idname = "csv_check";
+        $('.select_csv_tsv label').each(function(){
+          if ($(this).hasClass("active")) {
+            idname = $(this).attr("id");
+          }
+        });
+        var text = $('#set_table').val();
+        var separate = "\t";
+        if (idname == "csv_check") { separate = ","; }
+        console.log("clicked", idname, separate);
+      });
     })();
-
-    function press_enter(code){
-      if(code === 13){
-        text_at_input();
-      }
-    };
-
-    function text_at_input() {
-      var text = $('#input_check').val();
-
-      // 文字列が空白なら処理終了
-      if ( text.trim().length == 0) { return; }
-
-      // 仕切り文字の設定
-      var text_split = "\t";
-      if ($('#csv_check').hasClass('active')) { var text_split = ","; }
-
-      var lines = text.split("\n");
-      for(var i = 0; i < lines.length; i++) {
-        var arr = text.split(text_split);
-        console.log(lines[i]);
-      }
-
-    };
-
 
   </script>
 </body>
