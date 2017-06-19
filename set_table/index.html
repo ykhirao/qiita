@@ -47,7 +47,7 @@
     <div class="input-group">
       <span class="input-group-addon"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" id="click_set_table"></span></span>
       <input type="textarea" class="form-control" id="set_table" aria-label="Amount (to the nearest dollar)" placeholder="title" style="border-bottom: 0px;">
-      <textarea class="form-control" rows="5" id="comment" onkeydown="press_enter(event.keyCode)" style="border-radius: 0px; border-top: 0px;" placeholder="text" ></textarea>
+      <textarea class="form-control" rows="5" id="comment" style="border-radius: 0px; border-top: 0px;" placeholder="text" ></textarea>
     </div>
     <hr>
     <!-- テーブル整形 -->
@@ -68,12 +68,13 @@
             <span>Sample削除</span>
           </label>
           <label class="btn btn-default" id="create_table">
-            <span>Create !!</span>
+            <span>Create <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
           </label>
+          <label><span class="error"></span></label>
         </div>
       </div>
-      <textarea class="form-control" rows="5" id="input_check" onkeydown="press_enter(event.keyCode)" style="border-radius: 0px;" placeholder="input&#13;&#10;-----------&#13;&#10;sample1,sample2&#13;&#10;sample3,sample4" ></textarea>
-      <textarea class="form-control" rows="8" id="" onkeydown="press_enter(event.keyCode)" style="border-radius: 0px; border-top: 0px;" placeholder="output&#13;&#10;-----------&#13;&#10;|head1|head2|&#13;&#10;|:-:|:-:|&#13;&#10;|sample1|sample2|&#13;&#10;|sample3|sample4|"></textarea>
+      <textarea class="form-control" rows="5" id="input_check" style="border-radius: 0px;" placeholder="input&#13;&#10;-----------&#13;&#10;sample1,sample2&#13;&#10;sample3,sample4" ></textarea>
+      <textarea class="form-control" rows="8" id="output" style="border-radius: 0px; border-top: 0px;" placeholder="output&#13;&#10;-----------&#13;&#10;|head|head|&#13;&#10;|:-:|:-:|&#13;&#10;|sample1|sample2|&#13;&#10;|sample3|sample4|"></textarea>
     </div>
   </div>
   <script>
@@ -96,7 +97,37 @@
 
       $('#create_table').on('click', function(){
 
-        // 区切り文字の選択
+        // Create head of a Table
+        function set_head(num) {
+          var line1 = "|";
+          var line2 = "|";
+          for (var i = 0; i < num; i++) {
+            line1 += "head|";
+            line2 += ":-:|";
+          }
+          return line1 + "\n" + line2 + "\n";
+        }
+
+        // Create body of a Table
+        function set_body(lines) {
+          // 配列からbodyを作る
+          function set_line(arr) {
+            var line = "|";
+            for (var i = 0; i < arr.length; i++) {
+              line += arr[i] + "|";
+            }
+            return line + "\n";
+          }
+          var body = ""
+          for(var i = 0; i < lines.length; i++) {
+            line = lines[i]
+            line_split = line.split(separate);
+            body += set_line(line_split);
+          }
+          return body;
+        }
+
+        // Select a Separate symbol
         var idname = "csv_check";
         $('.select_csv_tsv label').each(function(){
           if ($(this).hasClass("active")) {
@@ -105,18 +136,19 @@
         });
         var separate = "\t";
         if (idname == "csv_check") { separate = ","; }
-        console.log("clicked", idname, separate);
 
+        // Check input text
         var text = $('#input_check').val();
+        if (text.trim().length == 0) { return; }
+
         var lines = text.split("\n");
-        for(var i = 0; i < lines.length; i++) {
-          line = lines[i]
-          line_split = line.split(separate);
-          for(var n = 0; n < line_split.length; n++) {
-            console.log(line_split[n]);
-          }
-        }
-        return;
+        var width = lines[0].split(separate).length;
+
+        // Create text for output
+        var output = set_head(width);
+        output += set_body(lines);
+        $('#output').val(output);
+
       });
     })();
 
