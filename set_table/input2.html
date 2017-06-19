@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Set Table</title>
+  <link rel="shortcut icon" href="https://avatars2.githubusercontent.com/u/25813519?v=3&u=d753df8c82ccc1c536b10d3dc771ad0faaaa8b62&s=400">
+  <!-- min jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <style>
+    ul {
+      -webkit-padding-start: 0px;
+    }
+    li {
+      /*background-color: #222222;*/
+      margin-left: 20px;
+      display: inline-block;
+      font-size: 14px;
+    }
+    ul > li > span {
+      margin-left: 15px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <!-- タイトルと本文の領域を分けない -->
+    <div class="input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" id="click_set_table"></span></span>
+      <input type="textarea" class="form-control" id="set_table" aria-label="Amount (to the nearest dollar)" placeholder="title" style="border-bottom: 0px;">
+      <textarea class="form-control" rows="5" id="comment" style="border-radius: 0px; border-top: 0px;" placeholder="text" ></textarea>
+    </div>
+  </div>
+  <script>
+    (function(){
+
+      $('#csv_check').on('click', function(){
+        $('#input_check')[0].placeholder = "input\n-----------\nsample1,sample2\nsample3,sample4";
+      });
+      $('#tsv_check').on('click', function(){
+        $('#input_check')[0].placeholder = "input\n-----------\nsample1 sample2\nsample3    sample4";
+      });
+      $('#write_sample').on('click', function(){
+        $('#tsv_check input')[0].click();
+        $('#input_check').val("sample1\tsample2\nsample3\tsample4");
+      });
+      $('#delete_sample').on('click', function(){
+        $('#input_check').val("");
+      });
+
+
+      $('#create_table').on('click', function(){
+
+        // Create head of a Table
+        function set_head(num) {
+          var line1 = "|";
+          var line2 = "|";
+          for (var i = 0; i < num; i++) {
+            line1 += "head|";
+            line2 += ":-:|";
+          }
+          return line1 + "\n" + line2 + "\n";
+        }
+
+        // Create body of a Table
+        function set_body(lines) {
+          // 配列からbodyを作る
+          function set_line(arr) {
+            var line = "|";
+            for (var i = 0; i < arr.length; i++) {
+              line += arr[i] + "|";
+            }
+            return line + "\n";
+          }
+          var body = ""
+          for(var i = 0; i < lines.length; i++) {
+            line = lines[i]
+            line_split = line.split(separate);
+            body += set_line(line_split);
+          }
+          return body;
+        }
+
+        // Select a Separate symbol
+        var idname = "csv_check";
+        $('.select_csv_tsv label').each(function(){
+          if ($(this).hasClass("active")) {
+            idname = $(this).attr("id");
+          }
+        });
+        var separate = "\t";
+        if (idname == "csv_check") { separate = ","; }
+
+        // Check input text
+        var text = $('#input_check').val();
+        if (text.trim().length == 0) { return; }
+
+        var lines = text.split("\n");
+        var width = lines[0].split(separate).length;
+
+        // Create text for output
+        var output = set_head(width);
+        output += set_body(lines);
+        $('#output').val(output);
+
+      });
+    })();
+
+  </script>
+</body>
+</html>
