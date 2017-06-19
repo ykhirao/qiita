@@ -45,7 +45,7 @@
   <div class="container">
     <!-- テーブル整形 -->
     <div class="input-group">
-      <span class="input-group-addon"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" id=""></span></span>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-circle-arrow-right create_table" aria-hidden="true" id=""></span></span>
       <div class="form-control" style="border-bottom: 0px; height: 47px;">
         <div class="btn-group select_csv_tsv" data-toggle="buttons">
           <label class="btn btn-default check_btn active" id="csv_check">
@@ -60,7 +60,7 @@
           <label class="btn btn-default" id="delete_sample">
             <span>Sample削除</span>
           </label>
-          <label class="btn btn-default" id="create_table">
+          <label class="btn btn-default create_table" id="create_table">
             <span>Create <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
           </label>
           <label><span class="error"></span></label>
@@ -72,7 +72,6 @@
   </div>
   <script>
     (function(){
-
       $('#csv_check').on('click', function(){
         $('#input_check')[0].placeholder = "input\n-----------\nsample1,sample2\nsample3,sample4";
       });
@@ -86,10 +85,7 @@
       $('#delete_sample').on('click', function(){
         $('#input_check').val("");
       });
-
-
-      $('#create_table').on('click', function(){
-
+      $('.create_table').on('click', function(){
         // Create head of a Table
         function set_head(num) {
           var line1 = "|";
@@ -100,7 +96,6 @@
           }
           return line1 + "\n" + line2 + "\n";
         }
-
         // Create body of a Table
         function set_body(lines) {
           // 配列からbodyを作る
@@ -119,7 +114,6 @@
           }
           return body;
         }
-
         // Select a Separate symbol
         var idname = "csv_check";
         $('.select_csv_tsv label').each(function(){
@@ -129,22 +123,17 @@
         });
         var separate = "\t";
         if (idname == "csv_check") { separate = ","; }
-
         // Check input text
         var text = $('#input_check').val();
         if (text.trim().length == 0) { return; }
-
         var lines = text.split("\n");
         var width = lines[0].split(separate).length;
-
         // Create text for output
         var output = set_head(width);
         output += set_body(lines);
         $('#output').val(output);
-
       });
     })();
-
   </script>
 </body>
 </html>
