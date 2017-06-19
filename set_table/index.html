@@ -68,7 +68,7 @@
             <span>Sample削除</span>
           </label>
           <label class="btn btn-default" id="create_table">
-            <span>Create Table</span>
+            <span>Create !!</span>
           </label>
         </div>
       </div>
@@ -93,17 +93,30 @@
         $('#input_check').val("");
       });
 
+
       $('#create_table').on('click', function(){
+
+        // 区切り文字の選択
         var idname = "csv_check";
         $('.select_csv_tsv label').each(function(){
           if ($(this).hasClass("active")) {
             idname = $(this).attr("id");
           }
         });
-        var text = $('#set_table').val();
         var separate = "\t";
         if (idname == "csv_check") { separate = ","; }
         console.log("clicked", idname, separate);
+
+        var text = $('#input_check').val();
+        var lines = text.split("\n");
+        for(var i = 0; i < lines.length; i++) {
+          line = lines[i]
+          line_split = line.split(separate);
+          for(var n = 0; n < line_split.length; n++) {
+            console.log(line_split[n]);
+          }
+        }
+        return;
       });
     })();
 
