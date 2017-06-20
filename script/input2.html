@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Set Table</title>
+  <title>Two Inputs</title>
   <link rel="shortcut icon" href="https://avatars2.githubusercontent.com/u/25813519?v=3&u=d753df8c82ccc1c536b10d3dc771ad0faaaa8b62&s=400">
   <!-- min jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -46,39 +46,25 @@
     <!-- タイトルと本文の領域を分けない -->
     <div class="input-group">
       <span class="input-group-addon"><span class="glyphicon glyphicon-share-alt" aria-hidden="true" id="click_set_table"></span></span>
-      <div class="form-control" style="border-bottom: 0px; height: 47px;">
-        <div class="btn-group select_csv_tsv" data-toggle="buttons">
-          <label class="btn btn-default create_table" id="submit">
-            <span>Submit <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
-          </label>
-        </div>
-      </div>
       <input type="textarea" class="form-control" id="title_area" aria-label="Amount (to the nearest dollar)" placeholder="title" style="border-bottom: 0px;">
       <textarea class="form-control" rows="5" id="comment_area" style="border-radius: 0px; border-top: 0px;" placeholder="comment" ></textarea>
     </div>
-    <div>title: </div><span id="title"></span>
-    <div>comment: </div><span id="comment"></span>
   </div>
   <script>
     (function(){
-
-      $('#csv_check').on('click', function(){
-        $('#input_check')[0].placeholder = "input\n-----------\nsample1,sample2\nsample3,sample4";
+      $('#title_area').on("keydown", function(e) {
+        if( e.keyCode == 13 || e.keyCode == 40) {
+          $("#comment_area").select();
+          return false;
+        }
       });
-      $('#tsv_check').on('click', function(){
-        $('#input_check')[0].placeholder = "input\n-----------\nsample1 sample2\nsample3    sample4";
+      $('#comment_area').on("keydown", function(e) {
+        if( e.keyCode == 38 && this.selectionStart == 0) {
+          $("#title_area").select();
+          return false;
+        }
       });
-      $('#write_sample').on('click', function(){
-        $('#tsv_check input')[0].click();
-        $('#input_check').val("sample1\tsample2\nsample3\tsample4");
-      });
-      $('#delete_sample').on('click', function(){
-        $('#input_check').val("");
-      });
-
-
     })();
-
   </script>
 </body>
 </html>
