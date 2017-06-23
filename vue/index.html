@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="mycounter">
+    <div v-text="count"></div>
+    <button v-on="click: countUp">Up</div>
+  </div>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#mycounter',
+      data: {
+        count: 0
+      },
+      methods: {
+        countUp: function(){
+          this.count++
+        }
+      }
+    });
+  </script>
+</body>
+</html>
