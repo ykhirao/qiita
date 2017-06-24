@@ -5,21 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    .red { color: red; }
+    .bold { font-weight: bold; }
+  </style>
 </head>
 <body>
-  <div id="mycounter">
-    <div v-text="count"></div>
-    <div v-text="count * 10"></div>
-    <div v-text="'(' + count + ')'"></div>
-    <div v-text="count ? count : '--'"></div>
-    <button v-on="click: count++">Up</div>
+  <div id="myapp">
+    <div v-class="red: isRed, bold: isBold">
+      {{content}}
+    </div>
   </div>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
   <script>
     var vm = new Vue({
-      el: '#mycounter',
+      el: '#myapp',
       data: {
-        count: 0
+        content: 'hello world',
+        // myStyle: 'bold'
+        isRed: true,
+        isBold: true
       }
     });
   </script>
