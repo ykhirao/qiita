@@ -12,30 +12,37 @@
 </head>
 <body>
   <div id="myapp">
-    <ul>
-      <li v-repeat="d1">{{$value}}</li>
-    </ul>
-    <ul>
-      <li v-repeat="d2">{{$index}}: {{$key}} - {{$value}}</li>
-    </ul>
-    <ul>
-      <li v-repeat="d3">{{$index}}: {{name}} - {{score}}</li>
-    </ul>
-    <ul>
-      <li v-repeat="5">{{$index}}</li>
-    </ul>
+    <p>
+      <input type="text" v-model="name">
+      {{name}}
+    </p>
+    <p>
+      <input type="checkbox" v-model="isAdmin">
+      {{isAdmin ? "admin": "not admin"}}
+    </p>
+    <p>
+      <input type="radio" name="phone" v-model="phone" value="iphone">
+      <input type="radio" name="phone" v-model="phone" value="android">
+      {{phone}}
+    </p>
+    <p>
+      <select name="" id="" v-model="city">
+        <option value="tokyo">tokyo</option>
+        <option value="osaka">osaka</option>
+        <option value="nagoya">nagoya</option>
+      </select>
+      {{city}}
+    </p>
   </div>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
   <script>
     var vm = new Vue({
       el: '#myapp',
       data: {
-        d1: ['a', 'b'],
-        d2: {k1: 'v1', k2: 'v2'},
-        d3: [
-          {name: "taguchi", score: "50"},
-          {name: "tanaka", score: "60"},
-        ]
+        name: 'taguchi',
+        isAdmin: true,
+        phone: 'iphone',
+        city: 'tokyo'
       }
     });
   </script>
