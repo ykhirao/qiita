@@ -12,19 +12,30 @@
 </head>
 <body>
   <div id="myapp">
-    <div v-class="red: isRed, bold: isBold">
-      {{content}}
-    </div>
+    <ul>
+      <li v-repeat="d1">{{$value}}</li>
+    </ul>
+    <ul>
+      <li v-repeat="d2">{{$index}}: {{$key}} - {{$value}}</li>
+    </ul>
+    <ul>
+      <li v-repeat="d3">{{$index}}: {{name}} - {{score}}</li>
+    </ul>
+    <ul>
+      <li v-repeat="5">{{$index}}</li>
+    </ul>
   </div>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
   <script>
     var vm = new Vue({
       el: '#myapp',
       data: {
-        content: 'hello world',
-        // myStyle: 'bold'
-        isRed: true,
-        isBold: true
+        d1: ['a', 'b'],
+        d2: {k1: 'v1', k2: 'v2'},
+        d3: [
+          {name: "taguchi", score: "50"},
+          {name: "tanaka", score: "60"},
+        ]
       }
     });
   </script>
