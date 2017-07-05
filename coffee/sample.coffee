@@ -228,30 +228,222 @@ alert sum
 繰り返し処理を行うのですが
 その処理の 1 段階ずつの結果を配列にして返すもの
 """
+
 sum = 0
 total (sum += i for i in [0..9])
-alert sum
+alert total
+# [0, 1, 3, 6, 10, 15, 21, 28, 36, 45]
+# 数列みたいになる！
 
+# while
+i = 0
+sum = 0
+total = while i < 10
+  sum += i
+  i++
+alert sum
+# この場合のtotalには[0..9]が入る
+# while中の最後に評価された値が配列として返ってくる
 
 
 ###
 
+# ----------------------------------------------
+
+###
+
+# 10 配列やオブジェクトの要素
+
+# each文
+for color in ["red","blue","pink"]
+  alert color
+
+# eachを一行
+alert color for color in ["red","blue","pink"]
+
+# isnt "blue"以外のときとか
+alert color for color in ["red","blue","pink"] when color isnt "blue"
+
+alert "#{i}: #{color}" for color, i in ["red","blue","pink"]
+
+# object
+
+# ofを使う
+result =
+  taguch: 40
+  fkoji: 45
+  dotinstall: 100
+
+
+for name, score of result
+  alert "#{name}: #{score}"
+
+alert "#{name}: #{score}" for name, score of result
+
+###
+
+# ----------------------------------------------
+
+###
+
+# 11 関数
+
+# JavaScript
+function hello() {}
+var hello = function(){}
+
+# coffeescript JSの2番目のほうが推奨
+1. function は ->に置き換え
+1. ()引数ないと省略可能
+1. {}は改行とインデントで調整
+
+hello = ->
+  alert "hello"
+
+hello = -> alert "hello"
+
+hello() # 引数ないと()だけつけて
+
+# 引数あり
+hello = (name) -> alert "hello #{name}"
+hello "taguch" # ()は省略可能
+
+# 引数の初期値
+hello = (name = "taguch") -> alert "hello #{name}"
+hello()
+
+# 関数の返り値
+
+return 使ってもいい
+最後に評価されたのが
+
+hello = -> "hello"
+msg = hello()
+alert msg
+
+# 即時関数はdoを使う
+(function(){
+  alert "hello"
+})();
+
+do -> alert "hello"
+
+
+###
+
+# ----------------------------------------------
+
+###
+
+# 12 分割代入
+
+[a, b, c] = [1, 5, 10]
+alert a
+alert b
+alert c
+
+x = 10
+y = 20
+[x, y] = [y, x]
+
+# 関数の返り値を複数
+
+results = (x) -> [x, y ** 2, x ** 3]
+[a, b, c] = results 5
+配列[5, 25, 125]が変える
+
+###
+
+# ----------------------------------------------
+
+###
+
+# 13 クラスを使う
+
+class User
+  constructor: (name)->
+    this.name = name
+
+tom = new User "tom"
+alert tom.name
+
+# 省略
+class User
+  constructor: (name)->
+    @name = name
+
+# 省略2
+# @ をつけた引数は(this.name = name)に代入される
+class User
+  constructor: (@name)->
+  hello: -> alert "hello #{@name}"
+
+# @nameとはthis.nameのこと
+
+tom = new User "tom"
+tom.hello()
+
+
+###
+
+# ----------------------------------------------
+
+###
+
+# 14 クラスの継承
+
+class User
+  constructor: (@name)->
+  hello: -> alert "hello #{@name}"
+
+class AdminUser extends User
+  hello: ->
+    # 同名メソッドのオーバーライド
+    # 親クラスのメソッドの前に処理を追加
+    alert "admin says...."
+    super() # 親クラスの同名のメソッド呼び出し
+
+tom = new User "tom"
+tom.hello()
+
+bob = new AdminUser "Bob"
+
+alert bob.name
+bob.hello()
+
+
+###
+
+# ----------------------------------------------
+
+###
+
+# 15 存在演算子
+
+# データ存在 ?
+
+0 '' -> false
+null / undefined
+
+
+x = 10
+rs = if x? then "found" else "not found"
+alert rs
+
+# 二項演算子
+
+y = 10 # yが存在しなかったら20、したらその値
+x = y ? 20
+alert x
+
+# 安全なアクセス演算子 ?
+user =
+  name: "taguchi"
+
+alert user.score?.first # scoreというプロパティがあれば
+alert user.sayhi?() # sayhiというメソッドがあれば
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+###
 
