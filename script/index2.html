@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Set Table</title>
-  <link rel="shortcut icon" href="https://avatars2.githubusercontent.com/u/25813519?v=3&u=d753df8c82ccc1c536b10d3dc771ad0faaaa8b62&s=400">
+  <link rel="shortcut icon" href="https://avatars2.githubusercontent.com/u/25813519">
   <!-- min jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <!-- Latest compiled and minified CSS -->
@@ -27,6 +27,16 @@
     ul > li > span {
       margin-left: 15px;
     }
+    .border-container {
+      overflow-y:scroll;
+      height: 200px;
+      width: 200px;
+      border: 1px solid #111;
+      margin: 5px;
+    }
+    .list {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -43,95 +53,39 @@
     </div>
   </nav>
   <div class="container">
-    <!-- テーブル整形 -->
-    <div class="input-group">
-      <span class="input-group-addon"><span class="glyphicon glyphicon-circle-arrow-right create_table" aria-hidden="true" id=""></span></span>
-      <div class="form-control" style="border-bottom: 0px; height: 47px;">
-        <div class="btn-group select_csv_tsv" data-toggle="buttons">
-          <label class="btn btn-default check_btn active" id="csv_check">
-            <input type="radio" autocomplete="off" checked="checked"> CSV
-          </label>
-          <label class="btn btn-default check_btn" id="tsv_check">
-            <input type="radio" autocomplete="off"> TSV
-          </label>
-          <label class="btn btn-default" id="write_sample">
-            <span>Sample入力</span>
-          </label>
-          <label class="btn btn-default" id="delete_sample">
-            <span>Sample削除</span>
-          </label>
-          <label class="btn btn-default create_table" id="create_table">
-            <span>Create <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
-          </label>
-          <label><span class="error"></span></label>
+    <!-- container1 -->
+    <div class="border-container">
+      <div style="height: 140px; background-color: #eee;"></div>
+      <div>
+        <button class="btn btn-primary">toggle</button>
+        <div class="list">
+          <ul>
+            <li>sample1</li>
+            <li>sample2</li>
+            <li>sample3</li>
+          </ul>
         </div>
       </div>
-      <textarea class="form-control" rows="5" id="input_check" style="border-radius: 0px;" placeholder="input&#13;&#10;-----------&#13;&#10;sample1,sample2&#13;&#10;sample3,sample4" ></textarea>
-      <textarea class="form-control" rows="8" id="output" style="border-radius: 0px; border-top: 0px;" placeholder="output&#13;&#10;-----------&#13;&#10;|head|head|&#13;&#10;|:-:|:-:|&#13;&#10;|sample1|sample2|&#13;&#10;|sample3|sample4|"></textarea>
+      <div style="height: 140px; background-color: #eee;"></div>
+      <div>
+        <button class="btn btn-primary">toggle</button>
+        <div class="list">
+          <ul>
+            <li>sample1</li>
+            <li>sample2</li>
+            <li>sample3</li>
+          </ul>
+        </div>
+      </div>
+      <div style="height: 1px; background-color: red;"></div>
     </div>
+    
   </div>
   <script>
     (function(){
-      $('#csv_check').on('click', function(){
-        $('#input_check')[0].placeholder = "input\n-----------\nsample1,sample2\nsample3,sample4";
-      });
-      $('#tsv_check').on('click', function(){
-        $('#input_check')[0].placeholder = "input\n-----------\nsample1 sample2\nsample3    sample4";
-      });
-      $('#write_sample').on('click', function(){
-        $('#tsv_check input')[0].click();
-        $('#input_check').val("sample1\tsample2\nsample3\tsample4");
-      });
-      $('#delete_sample').on('click', function(){
-        $('#input_check').val("");
-      });
-      $('.create_table').on('click', function(){
-        // Create head of a Table
-        function set_head(num) {
-          var line1 = "|";
-          var line2 = "|";
-          for (var i = 0; i < num; i++) {
-            line1 += "head|";
-            line2 += ":-:|";
-          }
-          return line1 + "\n" + line2 + "\n";
-        }
-        // Create body of a Table
-        function set_body(lines) {
-          // 配列からbodyを作る
-          function set_line(arr) {
-            var line = "|";
-            for (var i = 0; i < arr.length; i++) {
-              line += arr[i] + "|";
-            }
-            return line + "\n";
-          }
-          var body = ""
-          for(var i = 0; i < lines.length; i++) {
-            line = lines[i]
-            line_split = line.split(separate);
-            body += set_line(line_split);
-          }
-          return body;
-        }
-        // Select a Separate symbol
-        var idname = "csv_check";
-        $('.select_csv_tsv label').each(function(){
-          if ($(this).hasClass("active")) {
-            idname = $(this).attr("id");
-          }
-        });
-        var separate = "\t";
-        if (idname == "csv_check") { separate = ","; }
-        // Check input text
-        var text = $('#input_check').val();
-        if (text.trim().length == 0) { return; }
-        var lines = text.split("\n");
-        var width = lines[0].split(separate).length;
-        // Create text for output
-        var output = set_head(width);
-        output += set_body(lines);
-        $('#output').val(output);
+      $('.btn.btn-primary').click(function() {
+        // alert('clickイベントが発生しました。');
+        $(this).parent().find('.list').toggle();
       });
     })();
   </script>
