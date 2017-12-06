@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id='demo'>
+    <div v-for='category in categories'>
+      <h2>{{ category.name }}</h2>
+      <ul v-for='blog in category.blogs'>
+        <li>{{blog.title}} - {{blog.img}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+
+  new Vue({
+    el: '#demo',
+    data: {
+      categories: [
+        { 
+          name: 'カテゴリ1',
+          blogs: [
+            {
+              title: "タイトル1",
+              img: 'https://goo.gl/hvjbc4'
+            },
+            {
+              title: "タイトル2",
+              img: 'https://goo.gl/hvjbc4'
+            },
+            {
+              title: "タイトル3",
+              img: 'https://goo.gl/hvjbc4'
+            }
+          ]
+        },
+        { 
+          name: 'カテゴリ2',
+          blogs: []
+        },
+        { 
+          name: 'カテゴリ3',
+          blogs: [
+            {
+              title: "タイトル1",
+              img: 'https://goo.gl/hvjbc4'
+            },
+            {
+              title: "タイトル2",
+              img: 'https://goo.gl/hvjbc4'
+            }
+          ]
+        }
+      ]
+    }
+  })
+  </script>
+</body>
+</html>
