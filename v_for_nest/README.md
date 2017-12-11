@@ -11,12 +11,14 @@ Vue.jsでv-forをネストする
 <div v-for>
   <div v-for>
     <div v-for>
-      v-forをネストしてデータ構造をすべて出力したい。
+      v-forをネストしてデータをすべて出力したい。
     </div>
   </div>
 </div>
 
 ````
+
+## 今回扱うデータ
 
 ブログのカテゴリごとに記事を出力する。
 
@@ -30,14 +32,12 @@ Vue.jsでv-forをネストする
 同じ変数名を使ってやればデータにアクセスできるです。
 
 ```html
-
 <div v-for='category in categories'>
   <div v-for='blog in category.blogs'>
     <div>{{blog.title}}</div>
     <div>{{blog.text}}</div>
   </div>
 </div>
-
 ```
 
 ## 完成形
@@ -121,8 +121,7 @@ new Vue({
 ```
 
 
-
-# いろいろ調べた結果となぜこの記事を書いたか
+# いろいろ試した話
 
 弊社ではCMSを開発しているのですが、そこでかなりの時間ハマってしまったので共有しておこうと思い記事を書かせていただきました。
 
@@ -133,7 +132,6 @@ new Vue({
 私のドハマリ日のまずはじめはGoogle先生に頼ろうとして、日本語での検索からスタートしました。
 
 ```js
-
 var doc = document.querySelectorAll('h3 > a');
 var tmp = "";
 doc.forEach(function(val,index){
@@ -141,7 +139,6 @@ doc.forEach(function(val,index){
    tmp += `${index+1}. ${val.innerHTML} \n`;
 });
 console.log(tmp);
-
 ```
 
 1. リストレンダリング — Vue.js 
@@ -208,7 +205,6 @@ v-forでネストできるとわかったあとはまあ問題もなく順調に
     </ul>
   </div>
 </div>
-
 ```
 
 上記のように書くとブログを持っていないカテゴリも表示してしまうので`<template>`と`v-if`でなんとなく制御してみました。
@@ -226,7 +222,6 @@ v-forでネストできるとわかったあとはまあ問題もなく順調に
     </div>
   </template>
 </div>
-
 ```
 
 ## まとめ
