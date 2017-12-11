@@ -13,7 +13,7 @@ Vue.jsでv-forをネストする
 
 ![img](https://raw.githubusercontent.com/ykhirao/qiita/master/v_for_nest/assets/ss%202017-12-11%2017.41.52.jpg)
 
-# v-forをnestするには同じ名前を使うだけ
+## v-forをnestするには同じ名前を使うだけ
 
 同じ変数名を使ってやればデータにアクセスできるです。
 
