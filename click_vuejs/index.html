@@ -4,9 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
+  <title>Vue.js</title>
+  <style>
+    div {
+      padding: 2em;
+      width: 200px;
+      border: solid;
+    }
+    div:hover {
+      border-color: #6C9BD2;
+      color: #6C9BD2;
+    }
+  </style>
 </head>
 <body>
-
+  <div id='demo' v-on:click="click_1(); click_2()">
+    <p >クリックイベントはこちら</p>
+  </div>
+  <script>
+    new Vue({
+      el: '#demo',
+      methods: {
+        click_1: function() {
+          console.log("by click 1");
+        },
+        click_2: function() {
+          console.log("by click 2");
+        }
+      }
+    })
+  </script>
 </body>
 </html>

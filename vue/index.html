@@ -24,12 +24,12 @@
     var vm = new Vue({
       el: '#myapp',
       data: {
-        keyword: '',
-        users: [
-          {name: 'taguchi', score: 71},
-          {name: 'hira', score: 41},
-          {name: 'yk', score: 23}
-        ]
+        message: 'Hello Vue.js!'
+      },
+      methods: {
+        reverseMessage: function () {
+          this.message = this.message.split('').reverse().join('')
+        }
       }
     });
   </script>
