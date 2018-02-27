@@ -7,30 +7,36 @@
   <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
   <title>Vue.js</title>
   <style>
-    div {
+    p {
       padding: 2em;
       width: 200px;
       border: solid;
     }
-    div:hover {
+    p:hover {
       border-color: #6C9BD2;
       color: #6C9BD2;
     }
   </style>
 </head>
 <body>
-  <div id='demo' v-on:click="click_1(); click_2()">
-    <p >クリックイベントはこちら</p>
+  <div id='demo'>
+    <p v-on:click="click_1(); click_2()">クリックイベントはこちら</p>
+    <ul v-for="text in list">
+      <li>{{text}}</li>
+    </ul>
   </div>
   <script>
     new Vue({
       el: '#demo',
+      data: {
+        list: []
+      },
       methods: {
         click_1: function() {
-          console.log("by click 1");
+          this.list.push("by click 1")
         },
         click_2: function() {
-          console.log("by click 2");
+          this.list.push("by click 2")
         }
       }
     })
