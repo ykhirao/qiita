@@ -15,6 +15,8 @@ function doGet(e) {
 
 ![スクリーンショット](./ss.jpg)
 
+参考： https://developers.google.com/apps-script/guides/content#serving_json_from_scripts
+
 ## 対象としている人
 
 Ajaxで叩くAPIを用意してあげようとしている新人教育中の優しい先輩
