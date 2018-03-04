@@ -21,7 +21,7 @@ function doGet(e) {
 
 Ajaxで叩くAPIを用意してあげようとしている新人教育中の優しい先輩
 
-## MyJSONを使う
+## MyJSONというWebサービスを使う
 
 無料Webサービスではこれが簡単かと思います。<http://myjson.com/>
 
