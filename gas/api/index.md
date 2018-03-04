@@ -15,7 +15,7 @@ function doGet(e) {
 
 ![スクリーンショット](./ss.jpg)
 
-参考： https://developers.google.com/apps-script/guides/content#serving_json_from_scripts
+参考： <https://developers.google.com/apps-script/guides/content#serving_json_from_scripts>
 
 ## 対象としている人
 
@@ -23,8 +23,7 @@ Ajaxで叩くAPIを用意してあげようとしている新人教育中の優�
 
 ## MyJSONを使う
 
-無料Webサービスではこれが簡単かと思います。
-http://myjson.com/
+無料Webサービスではこれが簡単かと思います。<http://myjson.com/>
 
 ```shell
 curl https://api.myjson.com/bins/f36ox
