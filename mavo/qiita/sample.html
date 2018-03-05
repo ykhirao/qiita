@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Mavo :)</title>
+  
+  <!-- skeleton -->
+  <link rel="stylesheet" href="../css/skeleton.css">
+
+  <!-- mavo -->
+  <script src="https://get.mavo.io/mavo.min.js"></script>
+  <link rel="stylesheet" href="https://get.mavo.io/mavo.css"/>
+
+</head>
+<body>
+
+  <!-- mv-appでひとつのアプリが始まる -->
+  <div mv-app="youtube-qiita" mv-init="https://github.com/ykhirao/data" mv-storage="local">
+    <div class="container">
+      
+      <!-- ボタン -->
+      <button type="button" id="video_row" class="button button-primary">Close All Video</button>
+
+      <!-- mv-multipleが複数要素の設定画面 -->
+      <div property="youtube" mv-multiple>
+        
+        <!-- 設定画面 -->
+        <span class="three columns" property="title">title</span>
+        <span class="three columns" property="author">author</span>
+        <span class="six columns" property="details">details</span>
+        <button type="button" class="three columns" onclick="video_open(this)" data-url="[url]">Open & Set Video</button>
+        <button type="button" class="three columns" onclick="video_close(this)" data-url="[url]">Close Video</button>
+        <span class="six columns" property="url">https://www.youtube.com/</span>
+
+        <!-- Video -->
+        <div class="row video_row" style="display: none;">
+          <iframe width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('#video_row').click(function(){
+      let klass = $(this).attr("id");
+      $('.' + klass).hide();
+    });
+
+    function close_all_video(target){
+      let klass = target.attr("id");
+      if(target.hasClass("button-primary")){
+        $('.' + klass).show();
+      } else {
+        $('.' + klass).hide();
+      }
+    }
+
+    function video_open(target){
+      // URL取得
+      let url = $(target).data('url');
+      url = set_embed_url(url);
+      
+      // Videoのshow()とsrc設定
+      let video_target = $(target).parent().parent().next();
+      video_target.show();
+      video_target.find('iframe').attr('src', url);
+      // set_iframe_src(video_target, url);
+    }
+
+    function set_iframe_src(target, url) {
+      let iframe = target.find('iframe');
+      if (iframe.attr('src') !== url) {
+        iframe.attr('src', url)
+      } else if( typeof iframe.attr('src') === 'undefined' || iframe.attr('src') === false ){
+        iframe.attr('src', url)
+      }
+      return false; // 設定されていたら更新なし
+    }
+
+    // iframeのsrcを""にして強制終了
+    function video_close(target) {
+      let video_target = $(target).parent().parent().next();
+      video_target.hide();
+      video_target.find('iframe').attr('src', "");
+    }
+    
+    /*
+    * From: https://www.youtube.com/watch?v=video_id
+    * To: https://www.youtube.com/embed/video_id
+    */
+    function set_embed_url(url){
+      if ( url.indexOf('embed') != -1) return url;
+      let arr = url.split('?v=');
+      url = 'https://www.youtube.com/embed/' + arr[arr.length-1];
+      return url;
+    }
+
+  </script>
+</body>
+</html>
+
+
+<div property="youtube" mv-multiple>
+  <span property="title">title</span>
+  <span property="author">author</span>
+  <span property="details">details</span>
+  <span property="url">https://www.youtube.com/</span>
+
+{
+  "youtube": [
+    {
+      "title": "ハッピーエンド",
+      "url": "https://www.youtube.com/watch?v=hzWDXge2ANM",
+      "author": "back number",
+      "details": "Music Video"
+    }
+}
+

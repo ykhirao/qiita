@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Mavo :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- javascript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://get.mavo.io/mavo.min.js"></script>
+
+  <!-- css -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="https://get.mavo.io/mavo.css"/>
+  <style>
+    .mv-bar.mv-ui {
+      height: 60px;
+    }
+    .mv-bar.mv-ui {
+      font-size: 14px;
+    }
+    .video {
+      width:100%;
+      padding-bottom: 56.25%;
+      height:0px;
+      position: relative;
+    }
+    .video iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    hr { 
+      border: 0; 
+      height: 1px; 
+      background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+      background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+      background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+      background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    .footer .row {
+      color: white;
+      background-color: rgba(26, 26, 26, 0.7);
+      height: 60px;
+    }
+    .footer .row .container {
+      padding-top: 10px;
+    }
+  </style>
+
+</head>
+<body>
+  <div mv-app="youtube" mv-storage="https://github.com/ykhirao/data">
+    <div class="container">
+      <!-- ボタン -->
+      <div class="row">
+        <button type="button" id="video_row" class="button button-primary">Close All Video</button>
+      </div>
+      <!-- ここまでボタン -->
+      <div property="youtube" mv-multiple>
+        <hr>
+        <div class="row info_row">
+          <!-- 1行目 -->
+          <div class="row" style="margin-bottom: 15px;">
+            <span class="three columns" property="title">title</span>
+            <span class="three columns" property="author">author</span>
+            <span class="six columns" property="details">details</span>
+          </div>
+          <!-- 2行目 -->
+          <div class="row">
+            <button type="button" class="three columns" onclick="video_open(this)" data-url="[url]">Open & Set Video</button>
+            <button type="button" class="three columns" onclick="video_close(this)" data-url="[url]">Close Video</button>
+            <span class="six columns" property="url">https://www.youtube.com/</span>
+          </div>
+        </div>
+        <!-- 3行目 -->
+        <div class="row video_row" style="display: none;">
+          <div class="video">
+            <iframe width="560" height="315" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="row">
+      <div class="container">
+        <span>© 2017 @ykhirao</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('#video_row').click(function(){
+      let klass = $(this).attr("id");
+      $('.' + klass).hide();
+    });
+
+    function close_all_video(target){
+      let klass = target.attr("id");
+      if(target.hasClass("button-primary")){
+        $('.' + klass).show();
+      } else {
+        $('.' + klass).hide();
+      }
+    }
+
+    function video_open(target){
+      // URL取得
+      let url = $(target).data('url');
+      url = set_embed_url(url);
+      
+      // Videoのshow()とsrc設定
+      let video_target = $(target).parent().parent().next();
+      video_target.show();
+      video_target.find('iframe').attr('src', url);
+      // set_iframe_src(video_target, url);
+    }
+
+    function set_iframe_src(target, url) {
+      let iframe = target.find('iframe');
+      if (iframe.attr('src') !== url) {
+        iframe.attr('src', url)
+      } else if( typeof iframe.attr('src') === 'undefined' || iframe.attr('src') === false ){
+        iframe.attr('src', url)
+      }
+      return false; // 設定されていたら更新なし
+    }
+
+    // iframeのsrcを""にして強制終了
+    function video_close(target) {
+      let video_target = $(target).parent().parent().next();
+      video_target.hide();
+      video_target.find('iframe').attr('src', "");
+    }
+    
+    /*
+    * From: https://www.youtube.com/watch?v=video_id
+    * To: https://www.youtube.com/embed/video_id
+    */
+    function set_embed_url(url){
+      if ( url.indexOf('embed') != -1) return url;
+      let arr = url.split('?v=');
+      url = 'https://www.youtube.com/embed/' + arr[arr.length-1];
+      return url;
+    }
+    
+    // 以下未使用
+    function toggle_color(target){
+      if(target.hasClass("button-primary")){
+        target.removeClass("button-primary");
+      } else {
+        target.addClass("button-primary");
+      }
+    }
+    function toggle_items(target){
+      let klass = target.attr("id");
+      if(target.hasClass("button-primary")){
+        $('.' + klass).show();
+      } else {
+        $('.' + klass).hide();
+      }
+    }
+  </script>
+</body>
+</html>
