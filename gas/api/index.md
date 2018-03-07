@@ -35,8 +35,20 @@ curl https://api.myjson.com/bins/f36ox
 # {"k":"v"}
 ```
 
+### localに[json-server](https://github.com/typicode/json-server)を立てて使う
+
+Node.js等を使える人はjson-serverがおすすめみたいです！
+
+参考：[JSON Serverを使って手っ取り早くWebAPIのモックアップを作る](https://qiita.com/futoase/items/2859a60c8b240da70572)
+
+```
+npm install -g json-server
+```
+
+https://qiita.com/futoase/items/2859a60c8b240da70572
+
 ## 終わりに
 
 AjaxとかAPIとかよくわかってなかった時期がありました。それくらいのレベルの人に教えるときに先輩エンジニアが「API作っといたのでこれ自由に叩いていいよ」って感じの世界素敵ですね！！
 
-それでは素敵なGASライフを！！
+それでは素敵なAPIライフを！！
