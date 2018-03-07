@@ -4,8 +4,8 @@
 
 この記事の読書対象者は以下のようなエンジニアです。
 
-  * Ajaxで叩くAPIを用意してあげようとしている新人教育中の優しい先輩
-  * なんかのサンプルアプリを作っているときのモックとして
+* Ajaxで叩くAPIを用意してあげようとしている新人教育中の優しい先輩
+* なんかのサンプルアプリを作っているときのモックとして
 
 ## API作成
 
@@ -53,9 +53,30 @@ Node.js等を使える人はjson-serverがおすすめみたいです！
 npm install -g json-server
 ```
 
-https://qiita.com/futoase/items/2859a60c8b240da70572
-
 npmインストールとか必要だけどAPIモックにするのにはすごく便利なのでオススメ！
+
+### その他
+
+Gistを使ってもいけた。
+
+```js
+var url = 'https://api.github.com/gists/3137d994d72040d00a84f422349757d4';
+
+fetch( url )
+.then( function( data ) {
+  return data.json();
+})
+.then( function( json ) {
+  console.log( json.files['sample.json'].content );
+})
+```
+
+```shell
+# json
+curl https://api.github.com/gists/3137d994d72040d00a84f422349757d4
+```
+
+お手軽ではないです。
 
 ## 終わりに
 

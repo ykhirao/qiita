@@ -9,9 +9,9 @@ function doGet(e) { //アクセスが来たら実行します
       return createContent(e.parameter.callback , {response : "GA"});
     case 'hoge':
       return createContent(e.parameter.callback , {response : "HUGA"});
-    default : 
+    default :
       return createContent(e.parameter.callback , {error : "unsupported operation"});
-   } 
+   }
 }
 
 function createContent(callback , returnObject ) { //JSONまたはJSONPの文字列を返します
@@ -19,5 +19,5 @@ function createContent(callback , returnObject ) { //JSONまたはJSONPの文字
     return ContentService.createTextOutput(callback + '(' + JSON.stringify(returnObject) + ')').setMimeType(ContentService.MimeType.JAVASCRIPT);
   } else {
     return ContentService.createTextOutput(JSON.stringify( JSON.stringify(returnObject))).setMimeType(ContentService.MimeType.JSON);
-  }  
+  }
 }
