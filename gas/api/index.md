@@ -9,7 +9,11 @@
 
 ## API作成
 
-Google Apps Script(GAS)を使う方法と既存のWebサービスを使う方法があるので、この2種類を紹介しようと思います。
+* 実際に通信する
+  * Google Apps Script (GAS)で作成する
+  * MyJson (既存のWebサービス)でJsonを登録する
+* ローカルサーバーを立てる
+  * json-server（npmで導入する）
 
 ### Google Apps Script(GAS)を使う
 
@@ -26,6 +30,8 @@ function doGet(e) {
 
 参考： <https://developers.google.com/apps-script/guides/content#serving_json_from_scripts>
 
+GetメソッドにtokenをつけてたらJsonを返すとかそういう処理もできるのでオススメ！
+
 ### MyJSONというWebサービスを使う
 
 無料Webサービスではこれが簡単かと思います。<http://myjson.com/>
@@ -34,6 +40,8 @@ function doGet(e) {
 curl https://api.myjson.com/bins/f36ox
 # {"k":"v"}
 ```
+
+Jsonがあれば5秒で作れるのでオススメ！
 
 ### localに[json-server](https://github.com/typicode/json-server)を立てて使う
 
@@ -46,6 +54,8 @@ npm install -g json-server
 ```
 
 https://qiita.com/futoase/items/2859a60c8b240da70572
+
+npmインストールとか必要だけどAPIモックにするのにはすごく便利なのでオススメ！
 
 ## 終わりに
 
