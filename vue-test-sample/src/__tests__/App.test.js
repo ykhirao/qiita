@@ -1,8 +1,10 @@
-import { mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
+import App from '../App.vue'
 
-describe('Counter', () => {
-
+describe('App.vue', () => {
   it('renders the correct markup', () => {
-    expect(2).toBe(2)
+    const app = shallowMount(App)
+
+    expect(app).toMatchSnapshot()
   })
 })
