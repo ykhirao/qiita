@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
+  <title>Vue.js</title>
+  <style>
+    p {
+      padding: 1em;
+      width: 200px;
+      border: solid;
+    }
+    p:hover {
+      border-color: #6C9BD2;
+      color: #6C9BD2;
+    }
+  </style>
+</head>
+<body>
+  <div id='demo'>
+      <p>I will display &#771;</p>
+      <p>
+        a &#874;        a &#874;aa
+      </p>
+      <p>
+          <ruby>
+              <rb>亜米利加</rb>
+              <rp>（</rp>
+              <rt>アメリカ</rt>
+              <rp>）</rp>
+              </ruby>
+      </p>
+      <textarea name="" id="" cols="50" rows="5"></textarea>
+
+      a&#874;
+      <p></p>
+      pͪoͣnͬpͣoͥnͭpͣa͡inͥ
+    <p v-on:click="click_1(); click_2()">クリックイベントはこちら</p>
+    <ul v-for="text in list">
+      <li>{{text}}</li>
+    </ul>
+  </div>
+  <script>
+    new Vue({
+      el: '#demo',
+      data: {
+        list: []
+      },
+      methods: {
+        click_1: function() {
+          this.list.push("by click 1")
+        },
+        click_2: function() {
+          this.list.push("by click 2")
+        }
+      }
+    })
+  </script>
+</body>
+</html>
