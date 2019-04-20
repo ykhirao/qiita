@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h3>pͪoͣnͬpͣoͥnͭpͣa͡inͥ を支える技術</h3>
+    <DraggableText />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DraggableText from './components/DraggableText.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    DraggableText,
   }
 }
 </script>
@@ -23,5 +24,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  font-size: 1.7rem;
+}
+ul {
+  list-style: none;
 }
 </style>
