@@ -54,7 +54,7 @@ export default {
     },
     getCodeById(id) {
       const obj = this.codes.find(code => id === code.id)
-      return obj ? obj.val : " "
+      return obj ? obj.val : ""
     },
     del() {
       this.upperTextArray.splice(-1)
