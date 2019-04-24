@@ -6,41 +6,31 @@
       :group="{ name: 'upper', pull: 'clone', put: false }"
     >
       <li
-        v-for="alphabet in alphabets"
+        v-for="alphabet in upper"
         :key="alphabet.id"
         class="flex-li"
       >
         {{ alphabet.word }}
       </li>
     </draggable>
-    ~~~~~~~~~~~~~~~~~
     <draggable
       element="ul"
       class="flex-container"
-      group="lower"
+      group="upper"
     >
       <li
-        v-for="(alphabet, key) in lower"
+        v-for="(alphabet, key) in upper"
         :key="key"
         class="flex-li"
       >
         {{ alphabet.word }}
-        <i class="fa fa-times close" @click="removeAt(key)">x</i>
+        <!-- <i class="fa fa-times close" @click="removeAt(key)">x</i> -->
       </li>
     </draggable>
-    <draggable
-      element="ul"
-      class="flex-container"
-      :group="{ name: 'lower', pull: 'clone', put: false }"
-    >
-      <li 
-        v-for="(alphabet, key) in alphabets"
-        :key="key"
-        class="flex-li"
-      >
-        <span>{{ alphabet.word }}</span>
-      </li>
-    </draggable>
+    ~~~~~~~~~~~~~~~~~
+    <div>
+      <input type="text" class="input-lower" v-model="lowerText">
+    </div>
   </div>
 </template>
 <script>
@@ -61,6 +51,7 @@ export default {
   },
   data() {
     return {
+      lowerText: "ponponpain",
       alphabets: [
         { id: 1, word: 'a' },
         { id: 2, word: 'b' },
@@ -100,6 +91,9 @@ export default {
         { id: 1, word: 'a' },
         { id: 9, word: 'i' },
         { id: 14, word: 'n' },
+      ],
+      upper: [
+        { id: 1, word: 'ͯ' },
       ]
     }
   }
@@ -115,6 +109,11 @@ export default {
 .flex-li {
   padding: .2em .5em;
   border: solid 1px #000;
+}
+.input-lower {
+  text-align: center;
+  padding: .2em .5em;
+  font-size: 2em;
 }
 </style>
 
