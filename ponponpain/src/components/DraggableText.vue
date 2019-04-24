@@ -1,100 +1,81 @@
 <template>
   <div id="DraggableText">
-    <draggable
-      element="ul"
-      class="flex-container"
-      :group="{ name: 'upper', pull: 'clone', put: false }"
+    <span
+      v-for="code in codes"
+      :key="code.id"
+      class="flex-span"
+      @click="add(code.id)"
     >
-      <li
-        v-for="alphabet in upper"
-        :key="alphabet.id"
-        class="flex-li"
-      >
-        {{ alphabet.word }}
-      </li>
-    </draggable>
-    <draggable
-      element="ul"
-      class="flex-container"
-      group="upper"
-    >
-      <li
-        v-for="(alphabet, key) in upper"
-        :key="key"
-        class="flex-li"
-      >
-        {{ alphabet.word }}
-        <!-- <i class="fa fa-times close" @click="removeAt(key)">x</i> -->
-      </li>
-    </draggable>
-    ~~~~~~~~~~~~~~~~~
+      {{ code.val }}
+    </span>
+    <span @click="del" class="flex-span">del</span>
+    <span @click="clear" class="flex-span">clear</span>
+    <span @click="addSpace" class="flex-span">space</span>
+    <span @click="copy" class="flex-span">copy</span>
+    <div class="show-text">
+      {{showText}}
+    </div>
+    <div>
+      <input type="text" class="input-lower" :placeholder="showUpperText" disabled>
+    </div>
     <div>
       <input type="text" class="input-lower" v-model="lowerText">
+    </div>
+    <div>
+      <input id="input-copy" type="text" readonly class="input-copy" :value="showText">
     </div>
   </div>
 </template>
 <script>
-import draggable from 'vuedraggable';
+import codes from './../assets/codes.js'
 
 export default {
   name: "DraggableText",
   components: {
-    draggable,
   },
   computed: {
+    showText: function() {
+      return this.lowerText.split('').map((char, i) => {
+        return `${char}${this.getCodeById(this.upperTextArray[i])}`
+      }).join("")
+    },
+    showUpperText: function() {
+      return this.upperTextArray.map(id => {
+        return `  ${this.getCodeById(id)}`
+      }).join("")
+    }
   },
   methods: {
     removeAt: function(i) {
-      // console.log(this)
       this.lower.splice(i, 1)
-    }
+    },
+    add: function(i) {
+      this.upperTextArray.push(i)
+    },
+    getCodeById(id) {
+      const obj = this.codes.find(code => id === code.id)
+      return obj ? obj.val : " "
+    },
+    del() {
+      this.upperTextArray.splice(-1)
+    },
+    addSpace() {
+      this.upperTextArray.push(0)
+    },
+    clear() {
+      this.upperTextArray = []
+    },
+    copy() {
+      const input = document.getElementById("input-copy");
+      input.select();
+      document.execCommand("Copy");
+    },
   },
   data() {
     return {
       lowerText: "ponponpain",
-      alphabets: [
-        { id: 1, word: 'a' },
-        { id: 2, word: 'b' },
-        { id: 3, word: 'c' },
-        { id: 4, word: 'd' },
-        { id: 5, word: 'e' },
-        { id: 6, word: 'f' },
-        { id: 7, word: 'g' },
-        { id: 8, word: 'h' },
-        { id: 9, word: 'i' },
-        { id: 10, word: 'j' },
-        { id: 11, word: 'k' },
-        { id: 12, word: 'l' },
-        { id: 13, word: 'm' },
-        { id: 14, word: 'n' },
-        { id: 15, word: 'o' },
-        { id: 16, word: 'p' },
-        { id: 17, word: 'q' },
-        { id: 18, word: 'r' },
-        { id: 19, word: 's' },
-        { id: 20, word: 't' },
-        { id: 21, word: 'u' },
-        { id: 22, word: 'v' },
-        { id: 23, word: 'w' },
-        { id: 24, word: 'x' },
-        { id: 25, word: 'y' },
-        { id: 26, word: 'z' },
-      ],
-      lower: [
-        { id: 16, word: 'p' },
-        { id: 15, word: 'o' },
-        { id: 14, word: 'n' },
-        { id: 16, word: 'p' },
-        { id: 15, word: 'o' },
-        { id: 14, word: 'n' },
-        { id: 16, word: 'p' },
-        { id: 1, word: 'a' },
-        { id: 9, word: 'i' },
-        { id: 14, word: 'n' },
-      ],
-      upper: [
-        { id: 1, word: 'ͯ' },
-      ]
+      upperTextArray: [ 875, 870, 871, 873, 867, 875, 868, 873, 866, 867 ],
+      codes: codes,
     }
   }
 }
@@ -106,14 +87,25 @@ export default {
   display: flex;
   justify-content: center;
 }
-.flex-li {
-  padding: .2em .5em;
-  border: solid 1px #000;
+.flex-span {
+  padding: .3em .6em;
+  line-height: 180%;
+}
+.flex-span:hover {
+  background-color: chocolate;
 }
 .input-lower {
   text-align: center;
   padding: .2em .5em;
   font-size: 2em;
+  width: 90%;
+}
+.show-text {
+  font-size: 2.5em;
+}
+.input-copy {
+  position: fixed;
+  right: 200%;
 }
 </style>
 

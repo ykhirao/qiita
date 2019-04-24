@@ -25,6 +25,11 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   font-size: 1.7rem;
+  margin-right: auto; /* 1 */
+  margin-left:  auto; /* 1 */
+  max-width: 960px; /* 2 */ 
+  padding-right: 10px; /* 3 */
+  padding-left:  10px; /* 3 */
 }
 ul {
   list-style: none;
