@@ -90,6 +90,9 @@ export default {
 .flex-span {
   padding: .3em .6em;
   line-height: 180%;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .flex-span:hover {
   background-color: chocolate;
