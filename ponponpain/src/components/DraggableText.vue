@@ -24,6 +24,9 @@
     <div>
       <input id="input-copy" type="text" readonly class="input-copy" :value="showText">
     </div>
+    <div id="footer">
+      <a href="https://qiita.com/ykhirao/items/9ca1fbd294883e06dbd6">Qiita元記事はこちら</a>
+    </div>
   </div>
 </template>
 <script>
@@ -105,10 +108,17 @@ export default {
 }
 .show-text {
   font-size: 2.5em;
+  padding: 0.4em;
 }
 .input-copy {
   position: fixed;
   right: 200%;
+}
+#footer {
+  position: fixed;
+  bottom: 0;
+  font-size: .5em;
+  margin-bottom: 1em;
 }
 </style>
 
