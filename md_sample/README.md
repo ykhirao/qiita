@@ -1,9 +1,16 @@
+# マークダウンの改行について
 
-## 文末に半角空白スペースを2つつける
+## 何もしない
 
 test1
 test2
 test3
+
+## 文末に半角空白スペースを2つつける
+
+test1  
+test2  
+test3  
 
 ## 1行空白の行を入れる
 
@@ -18,3 +25,15 @@ test3
 test1<br>
 test2<br>
 test3<br>
+
+## VSCodeの設定メモ
+
+```
+{
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "files.trimTrailingWhitespace": false,
+  },
+}
+
+```
