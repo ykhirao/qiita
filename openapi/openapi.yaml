@@ -61,6 +61,8 @@ paths:
                 keywords:
                   type: array
                   description: 最大10件のキーワードを指定できます
+                  items:
+                    type: string
                   example:
                     - パソコン
                     - マウス
