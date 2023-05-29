@@ -1,0 +1,93 @@
+openapi: 3.0.3
+info:
+  title: 商品名を配列で返すAPIの書き方
+  version: 1.0.0
+paths:
+  '/':
+    get:
+      description: キーワード指定1つ
+      operationId: Get by 1 KeyWord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - keyword
+              properties:
+                keyword:
+                  type: string
+                  example: 'パソコン'
+                  description: 適当なキーワードを入力してください
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    example: true
+                    description: ここは常にTrueを返します
+                  products:
+                    type: array
+                    description: 最大10件返します
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          description: 商品名
+                          example: MacBook
+                        url:
+                          type: string
+                          description: 商品のURL
+                          example: https://example.com
+
+  '/items':
+    get:
+      description: キーワード指定複数
+      operationId: Get by KeyWords
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - keywords
+              properties:
+                keywords:
+                  type: array
+                  description: 最大10件のキーワードを指定できます
+                  example:
+                    - パソコン
+                    - マウス
+                    - キーボード
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    example: true
+                    description: ここは常にTrueを返します
+                  products:
+                    type: array
+                    description: 最大10件返します
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          description: 商品名
+                          example: MacBook
+                        url:
+                          type: string
+                          description: 商品のURL
+                          example: https://example.com
