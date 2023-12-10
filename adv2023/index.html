@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech synthesis utterance</title>
+  <style>
+    .container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+
+      * {
+        width: 85%;
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 10;
+      }
+
+      select {
+        height: 200px;
+      }
+
+      option {
+        margin-bottom: 3px;
+      }
+
+      table,
+      td,
+      th {
+        border-collapse: collapse;
+        border: 1px #333 solid;
+      }
+
+      table {
+        width: 70%;
+        margin: 40px 0;
+        margin-bottom: 30px;
+      }
+
+      [v-cloak] {
+        display: none;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app" class="container" v-cloak>
+    <input type="text" v-model="text">
+    <table>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>key</th>
+          <th>言語</th>
+          <th>国</th>
+          <th>default</th>
+          <th>localService</th>
+          <th>Speck</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="voice in ordered">
+          <td>{{voice.name}}</td>
+          <td>{{voice.lang}}</td>
+          <td>{{langToLang(voice.lang)}}</td>
+          <td>{{langToContry(voice.lang)}}</td>
+          <td>{{voice.default}}</td>
+          <td>{{voice.localService}}</td>
+          <td><button @click="speak(voice)">speak</button><button @click="stop(voice)">stop</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    const langList = {
+      is: 'アイスランド語',
+      ga: 'アイルランド語',
+      af: 'アフリカ語',
+      ar: 'アラビア語',
+      sq: 'アルバニア語',
+      it: 'イタリア語',
+      id: 'インドネシア語',
+      uk: 'ウクライナ語',
+      uz: 'ウズベク語',
+      et: 'エストニア語',
+      ca: 'カタロニア',
+      gl: 'ガリシア',
+      km: 'カンボジア語；クメール語',
+      ky: 'キルギス語',
+      ku: 'クルド語',
+      hr: 'クロアチア語',
+      gd: 'ゲール語',
+      kg: 'コンゴ語',
+      jv: 'ジャワ語',
+      ka: 'ジョージア語',
+      sv: 'スウェーデン語',
+      es: 'スペイン語',
+      sk: 'スロバキア語',
+      sl: 'スロベニア',
+      sw: 'スワヒリ語',
+      sr: 'セルビア',
+      sr: 'セルビア語',
+      so: 'ソマリ語',
+      th: 'タイ語',
+      tl: 'タガログ語',
+      cs: 'チェコ語',
+      bo: 'チベット語',
+      da: 'デンマーク語',
+      de: 'ドイツ語',
+      tk: 'トルクメン語',
+      tr: 'トルコ語',
+      ne: 'ネパール語',
+      no: 'ノルウェー語',
+      eu: 'バスク語',
+      haw: 'ハワイ',
+      hu: 'ハンガリー語；マジャル語',
+      my: 'ビルマ語；ミャンマー語',
+      hi: 'ヒンディー語',
+      fi: 'フィンランド語',
+      fo: 'フェロー諸島',
+      fr: 'フランス語',
+      bg: 'ブルガリア',
+      vi: 'ベトナム語',
+      he: 'ヘブライ語',
+      fa: 'ペルシア語',
+      pl: 'ポーランド語',
+      pt: 'ポルトガル語',
+      mk: 'マケドニア',
+      mt: 'マルタ語',
+      ms: 'マレー語',
+      la: 'ラテン語',
+      lv: 'ラトビア語',
+      lt: 'リトアニア語',
+      ro: 'ルーマニア語',
+      lb: 'ルクセンブルク語',
+      rw: 'ルワンダ語',
+      ru: 'ロシア語',
+      en: '英語',
+      ko: '韓国語',
+      el: '現代ギリシア語',
+      zh: '中国語',
+      ja: '日本語',
+      nb: 'ノルウェー語',
+      nl: 'オランダ語',
+      eo: 'エスペラント語',
+      cy: 'ウェールズ語',
+    }
+    const contries = {
+      "001": '世界',
+      il: 'イスラエル',
+      in: 'インド',
+      hr: 'クロアチア',
+      hu: 'ハンガリー',
+      id: 'インドネシア',
+      ie: 'アイルランド',
+      bg: 'ブルガリア',
+      gr: 'ギリシャ',
+      no: 'ノルウェー',
+      pl: 'ポーランド',
+      sk: 'スロバキア',
+      th: 'タイ',
+      ua: 'ウクライナ',
+      vn: 'ベトナム',
+      hk: '香港',
+      cz: 'チェコ',
+      dk: 'デンマーク',
+      nl: 'オランダ',
+      ar: 'アルゼンチン',
+      br: 'ブラジル',
+      cn: '中国',
+      de: 'ドイツ',
+      eg: 'エジプト',
+      es: 'スペイン',
+      fr: 'フランス',
+      it: 'イタリア',
+      jp: '日本',
+      kr: '韓国',
+      la: 'ラオス',
+      ms: 'モントセラト',
+      my: 'マレーシア',
+      ru: 'ロシア',
+      ch: 'スイス',
+      se: 'スウェーデン',
+      fi: 'フィンランド',
+      uy: 'ウルグアイ',
+      ec: 'エクアドル',
+      sv: 'エルサルバドル',
+      gt: 'ガテマラ',
+      cr: 'コスタリカ',
+      co: 'コロンビア',
+      cl: 'チリ',
+      do: 'ドミニカ共和国',
+      ni: 'ニカラグア',
+      pa: 'パナマ',
+      py: 'パラグアイ',
+      pr: 'プエルトリコ',
+      ve: 'ベネズエラ',
+      pe: 'ペルー',
+      bo: 'ボリビア',
+      hn: 'ホンジュラス',
+      mx: 'メキシコ',
+      at: 'オーストリア',
+      ch: 'スイス',
+      li: 'リヒテンシュタイン',
+      lu: 'ルクセンブルグ',
+      ca: 'カナダ',
+      ch: 'スイス',
+      fr: 'フランス',
+      be: 'ベルギー',
+      mc: 'モナコ',
+      lu: 'ルクセンブルグ',
+      mo: 'モルドバ',
+      ro: 'ルーマニア',
+      mo: 'モルドバ',
+      ie: 'アイルランド',
+      jm: 'ジャマイカ',
+      tt: 'タイ',
+      nz: 'ニュージーランド',
+      ph: 'フィリピン',
+      bz: 'ベリーズ',
+      za: '南アフリカ',
+      ar: 'アルゼンチン',
+      br: 'ブラジル',
+      pt: 'ヨーロッパ',
+      us: 'アメリカ',
+      gb: 'イギリス',
+      au: 'オーストラリア',
+      ca: 'カナダ',
+      cn: '簡体字',
+      yue: '広東',
+      tw: '繁体字',
+    }
+
+    const { createApp, ref } = Vue;
+    const app = new Vue({
+      el: '#app',
+      data: {
+        text: "If you don't mind, please press the like button!",
+        voices: [],
+      },
+      mounted: function () {
+        window.speechSynthesis.onvoiceschanged = () => {
+          console.info('音声の準備ができました', window.speechSynthesis.getVoices().length);
+          this.voices = window.speechSynthesis.getVoices();
+        };
+      },
+      methods: {
+        speak: function (voice) {
+          const uttr = new SpeechSynthesisUtterance(this.text);
+          uttr.voice = voice;
+          speechSynthesis.speak(uttr);
+        },
+        stop: function (voice) {
+          const uttr = new SpeechSynthesisUtterance(this.text);
+          uttr.voice = voice;
+          speechSynthesis.cancel(uttr);
+        },
+        langToLang: function (lang) {
+          const text = lang.split('-')[0].toLowerCase();
+          return langList[text] || text;
+        },
+        langToContry: function (lang) {
+          const text = lang.split('-')[1].toLowerCase();
+          return contries[text] || text;
+        },
+      },
+      computed: {
+        ordered: function () {
+          return this.voices.sort((a, b) => {
+            if (a.lang < b.lang) {
+              return -1;
+            }
+            if (a.lang > b.lang) {
+              return 1;
+            }
+            return 0;
+          });
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
