@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h3>pͪoͣnͬpͣoͥnͭpͣa͡inͥ を支える技術</h3>
     <DraggableText />
   </div>
 </template>
@@ -27,7 +26,7 @@ export default {
   font-size: 1.7rem;
   margin-right: auto; /* 1 */
   margin-left:  auto; /* 1 */
-  max-width: 960px; /* 2 */ 
+  max-width: 960px; /* 2 */
   padding-right: 10px; /* 3 */
   padding-left:  10px; /* 3 */
 }

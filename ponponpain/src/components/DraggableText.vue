@@ -1,28 +1,27 @@
 <template>
   <div id="DraggableText">
-    <span
-      v-for="code in codes"
-      :key="code.id"
-      class="flex-span"
-      @click="add(code.id)"
-    >
+    <h3>pͪoͣnͬpͣoͥnͭpͣa͡inͥ を支える技術</h3>
+    <div>
+      <input type="text" class="square-input" v-model="baseText" placeholder="ベーステキスト / ponponpain">
+    </div>
+    <span v-for="code in codes" :key="code.id" class="selectable-button" @click="add(code.id)">
       {{ code.val }}
     </span>
-    <span @click="del" class="flex-span">del</span>
-    <span @click="clear" class="flex-span">clear</span>
-    <span @click="addSpace" class="flex-span">space</span>
-    <span @click="copy" class="flex-span">copy</span>
+    <div>
+      <button @click="del" class="selectable-button">1文字削除</button>
+      <button @click="clear" class="selectable-button">全文字削除</button>
+      <button @click="addSpace" class="selectable-button">空白挿入</button>
+      <button @click="copy" class="selectable-button">コピーする</button>
+      <button @click="ponponpain" class="selectable-button">pͫoͦnͧpͩoͣnͫpͤaͩi͢nͣの例</button>
+    </div>
     <div class="show-text">
-      {{showText}}
+      {{ showText }}
     </div>
     <div>
-      <input type="text" class="input-lower" :placeholder="showUpperText" disabled>
+      <input type="text" class="square-input" :placeholder="showUpperText" disabled>
     </div>
     <div>
-      <input type="text" class="input-lower" v-model="lowerText">
-    </div>
-    <div>
-      <input id="input-copy" type="text" readonly class="input-copy" :value="showText">
+      <input type="text" class="hidden-input-for-copy" readonly :value="showText">
     </div>
     <div id="footer">
       <a href="https://qiita.com/ykhirao/items/9ca1fbd294883e06dbd6">Qiita元記事はこちら</a>
@@ -37,22 +36,22 @@ export default {
   components: {
   },
   computed: {
-    showText: function() {
-      return this.lowerText.split('').map((char, i) => {
+    showText: function () {
+      return this.baseText.split('').map((char, i) => {
         return `${char}${this.getCodeById(this.upperTextArray[i])}`
       }).join("")
     },
-    showUpperText: function() {
+    showUpperText: function () {
       return this.upperTextArray.map(id => {
         return `  ${this.getCodeById(id)}`
       }).join("")
     }
   },
   methods: {
-    removeAt: function(i) {
+    removeAt: function (i) {
       this.lower.splice(i, 1)
     },
-    add: function(i) {
+    add: function (i) {
       this.upperTextArray.push(i)
     },
     getCodeById(id) {
@@ -69,16 +68,20 @@ export default {
       this.upperTextArray = []
     },
     copy() {
-      const input = document.getElementById("input-copy");
+      const input = document.querySelector(".hidden-input-for-copy");
       input.select();
       document.execCommand("Copy");
     },
+    ponponpain() {
+      this.upperTextArray = [875, 870, 871, 873, 867, 875, 868, 873, 866, 867];
+      this.baseText = 'ponponpain';
+    }
   },
   data() {
     return {
-      lowerText: "ponponpain",
-      upperTextArray: [ 875, 870, 871, 873, 867, 875, 868, 873, 866, 867 ],
-      codes: codes,
+      baseText: "",
+      upperTextArray: [],
+      codes,
     }
   }
 }
@@ -90,30 +93,52 @@ export default {
   display: flex;
   justify-content: center;
 }
-.flex-span {
-  padding: .3em .6em;
+
+.base-input-container {
+  display: flex;
+  font-size: 1em;
+}
+
+.base-input-container label {
+  font-size: .6em;
+  padding: .2em;
+  width: 20%;
+}
+
+.base-input-container span {
+  font-size: 0.3em;
+}
+
+.selectable-button {
+  padding: .1em .3em;
   line-height: 180%;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-.flex-span:hover {
+
+.selectable-button:hover {
   background-color: chocolate;
 }
-.input-lower {
+
+.square-input {
   text-align: center;
   padding: .2em .5em;
-  font-size: 2em;
-  width: 90%;
+  font-size: 1em;
+  width: 80%;
 }
+
 .show-text {
   font-size: 2.5em;
   padding: 0.4em;
 }
-.input-copy {
+
+.hidden-input-for-copy {
+  /* display: none; だとコピーが効かないので画面外にコピー用componentを描画する */
   position: fixed;
-  right: 200%;
+  right: 300%;
 }
+
 #footer {
   position: fixed;
   bottom: 0;
@@ -121,4 +146,3 @@ export default {
   margin-bottom: 1em;
 }
 </style>
-
