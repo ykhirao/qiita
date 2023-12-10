@@ -71,7 +71,7 @@
           <td>{{langToContry(voice.lang)}}</td>
           <td>{{voice.default}}</td>
           <td>{{voice.localService}}</td>
-          <td><button @click="speak(voice)">speak</button></td>
+          <td><button @click="speak(voice)">speak</button><button @click="stop(voice)">stop</button></td>
         </tr>
       </tbody>
     </table>
@@ -254,6 +254,11 @@
           const uttr = new SpeechSynthesisUtterance(this.text);
           uttr.voice = voice;
           speechSynthesis.speak(uttr);
+        },
+        stop: function (voice) {
+          const uttr = new SpeechSynthesisUtterance(this.text);
+          uttr.voice = voice;
+          speechSynthesis.cancel(uttr);
         },
         langToLang: function (lang) {
           const text = lang.split('-')[0].toLowerCase();
