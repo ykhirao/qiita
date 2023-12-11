@@ -2,39 +2,29 @@
 
 https://ykhirao.github.io/qiita/
 
-## 書きたいこと
+## Ponponpain
 
-+ GASのWEB API化  
-+ Qiita .md 自動表生成  
-+ ライブコーディング採用
-+ Slack APIレガシーの話
-+ Slackに大量のemoji
+pͪoͣnͬpͣoͥnͭpͣa͡inͥ を作るサイト
+
+https://ykhirao.github.io/qiita/ponponpain/dist/
 
 
-## [slide_markdown](https://ykhirao.github.io/qiita/slide_markdown/)
+## adv2023
 
-### 内容
-* Markdown記法によるスライド作成するアプリ等
-* 5サンプル
+文字読み上げ機能を確かめるページ
 
-### Screenshot
-reveal.js
-![reveal.js](./images/reveal_js.jpg)
-
-## hidden_command
-ある隠しコマンドを打つとalertが出る。
-
-## gas
-Google Apps Scriptのサンプル
-
-### Slack log
-ログを取得するサンプル
-
-### set holiday
-Google Calendarの休日設定を拡張する。
+https://ykhirao.github.io/qiita/adv2023
 
 
+## jsx-without-react
 
+JSX を React なしで使う
 
+https://ykhirao.github.io/qiita/jsx-without-react/jsx/build
+
+JSX をテンプレートエンジンとしてどれくらい使えるか試してみた。
+基本既存データがある場合に使うのが良さそう。fetchしてデータ注入したりはできない
+
+https://ykhirao.github.io/qiita/jsx-without-react/jsx-template/build
 
 .
