@@ -1,3 +1,5 @@
+
+
 # Qiita
 
 https://ykhirao.github.io/qiita/
@@ -11,7 +13,7 @@ https://ykhirao.github.io/qiita/ponponpain/dist/
 
 ## adv2023
 
-文字読み上げ機能を確かめるページ
+文字読み上げ（Web Speech API）機能を確かめるページ
 
 https://ykhirao.github.io/qiita/adv2023
 
